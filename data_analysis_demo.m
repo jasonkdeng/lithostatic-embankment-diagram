@@ -2,7 +2,7 @@ groundELEV = 259.5;
 x_Of_Col = [0, 8.13, 16.26, 19.92, 26.38];
 
 % Read and adjust elevation
-ELEV_raw = readmatrix("Stress Spreadsheets(Peak Flood).csv", ...
+ELEV_raw = readmatrix("Stress Spreadsheets(Sheet2).csv", ...
     "Range", "A2:A32");
 % If ELEV is 2D, take only the first column
 if size(ELEV_raw, 2) > 1
@@ -13,7 +13,7 @@ end
 %ELEV = ELEV + groundELEV;
 
 % Read stress data and convert to kPa - adjust range to match x_Of_Col
-data_Before_raw = readmatrix("Stress Spreadsheets(Peak Flood).csv", ...
+data_Before_raw = readmatrix("Stress Spreadsheets(Sheet2).csv", ...
     "Range", "C2:G32") / 1000;
 % If data has more columns than expected, take only the first 5
 if size(data_Before_raw, 2) > length(x_Of_Col)
@@ -70,12 +70,12 @@ colormap(cmap_custom);
 caxis([0, max(contour_Vec)]);
 
 cb = colorbar('Direction', 'reverse');
-cb.Label.String = '\bfLithostatic Stress (kPa)';
+cb.Label.String = '\bfTotal Effective Stress (kPa)';
 cb.Label.FontSize = 10;
 
 xlabel('Horizontal Distance (m)');
 ylabel('Elevation (masl)');
-title('Plot of Lithostatic Stresses (Peak Flood)');
+title('Plot of Total Effective Stress');
 
 % Safe ylim
 ylim([min(ELEV, [], 'omitnan'), max(ELEV, [], 'omitnan')]);
